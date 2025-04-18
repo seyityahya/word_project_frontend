@@ -41,6 +41,12 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-purple: var(--purple);
+  --color-purple-foreground: var(--purple-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
 }
 
 :root {
@@ -76,6 +82,15 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
+  /* Purple theme color based on #6D28D9 */
+  --purple: oklch(0.465 0.218 286.697); /* This is #6D28D9 in OKLCH */
+  --purple-foreground: oklch(0.985 0.002 247.839);
+  /* Success color - nice medium green */
+  --success: oklch(0.67 0.2 142.5); /* #22c55e in OKLCH */
+  --success-foreground: oklch(1 0 0);
+  /* Warning color - dark amber/yellow */
+  --warning: oklch(0.73 0.199 80.1); /* #f59e0b in OKLCH */
+  --warning-foreground: oklch(0.1 0.02 80.1);
 }
 
 .dark {
@@ -110,6 +125,15 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Purple theme color for dark mode - slightly brighter than light mode */
+  --purple: oklch(0.54 0.247 286.697); /* Brighter version of #6D28D9 for dark mode */
+  --purple-foreground: oklch(0.13 0.028 261.692);
+  /* Success color for dark mode - slightly brighter for better visibility */
+  --success: oklch(0.72 0.22 142.5); /* Brighter version of #22c55e for dark mode */
+  --success-foreground: oklch(0.13 0.028 261.692);
+  /* Warning color for dark mode - slightly brighter for better visibility */
+  --warning: oklch(0.78 0.22 80.1); /* Brighter version of #f59e0b for dark mode */
+  --warning-foreground: oklch(0.13 0.028 261.692);
 }
 
 @layer base {
