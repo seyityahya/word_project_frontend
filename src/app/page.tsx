@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Delete, Pencil, Trash, Trash2 } from "lucide-react";
 import { CustomAccordion } from "@/components/accordion/CustomAccordion";
 
 export default function Home() {
@@ -31,6 +32,18 @@ export default function Home() {
           <Button>
             Default
           </Button>
+          <Button isLoading>
+            Loading
+          </Button>
+          <Button disabled>
+            Disabled
+          </Button>
+          <Button startIcon={<Pencil />}>
+            Icon
+          </Button>
+          <Button endIcon={<Trash />}>
+            Icon
+          </Button>
           <Button variant="outline">
             Outline
           </Button>
@@ -51,6 +64,15 @@ export default function Home() {
           </Button>
           <Button variant="link">
             Link
+          </Button>
+          <Button variant="iconOnly" size="sm">
+            <Pencil className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="iconOnly"
+            className="text-destructive hover:bg-destructive/10"
+          >
+            <Trash2 className="h-4 w-4" />
           </Button>
         </div>
       </div>
