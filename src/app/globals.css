@@ -91,6 +91,10 @@
   /* Warning color - dark amber/yellow */
   --warning: oklch(0.73 0.199 80.1); /* #f59e0b in OKLCH */
   --warning-foreground: oklch(0.1 0.02 80.1);
+
+  /* Custom toast styling */
+  --toast-close-button-position-left: auto !important;
+  --toast-close-button-position-right: 8px !important;
 }
 
 .dark {
