@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-// Spinner bileşeni için SVG animasyonu
+// SVG animation for the Spinner component
 const Spinner = ({ className }: { className?: string }) => {
   return (
     <svg
