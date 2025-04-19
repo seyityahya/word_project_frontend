@@ -1,7 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { CustomAccordion } from "@/components/accordion/CustomAccordion";
 
 export default function Home() {
+
+  const accordionItems = [
+    {
+      value: "item-1",
+      trigger: "What is this project?",
+      content: "This is a showcase of UI components built with Next.js, Tailwind CSS and shadcn/ui."
+    },
+    {
+      value: "item-2",
+      trigger: "How are the components styled?",
+      content: "Components are styled using Tailwind CSS with a custom purple color theme."
+    },
+    {
+      value: "item-3",
+      trigger: "Can I use these components?",
+      content: "Yes, you can use and customize these components for your own projects."
+    }
+  ];
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
       {/* Buttons card */}
@@ -38,26 +58,10 @@ export default function Home() {
       {/* Accordion example */}
       <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
         <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Accordion Component</h2>
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger>What is this project?</AccordionTrigger>
-            <AccordionContent>
-              This is a sample project showcasing various UI components styled with Tailwind CSS.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-2">
-            <AccordionTrigger>How are the components styled?</AccordionTrigger>
-            <AccordionContent>
-              Components are styled using Tailwind CSS with a custom purple color theme.
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem value="item-3">
-            <AccordionTrigger>Can I use these components?</AccordionTrigger>
-            <AccordionContent>
-              Yes, you can use and customize these components for your own projects.
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <CustomAccordion
+          type="single"
+          items={accordionItems}
+        />
       </div>
     </div>
   );
