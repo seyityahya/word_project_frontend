@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash, Trash2 } from "lucide-react";
+import { CheckCircle, Pencil, Trash, Trash2 } from "lucide-react";
 import { CustomAccordion } from "@/components/accordion/CustomAccordion";
 import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
   const accordionItems = [
@@ -140,6 +141,26 @@ export default function Home() {
         >
           Toast with Action
         </Button>
+      </div>
+
+      {/* Badge */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Badge Component
+        </h2>
+        <div className="flex flex-wrap gap-4">
+          <Badge variant="default">Default</Badge>
+          <Badge startIcon={<CheckCircle />}>
+            Badge with Icon
+          </Badge>
+          <Badge variant="error">Error</Badge>
+          <Badge variant="success">Success</Badge>
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="outline">Outline</Badge>
+          <Badge variant="secondary">Secondary</Badge>
+          <Badge variant="ghost">Ghost</Badge>
+          <Badge variant="link">Link</Badge>
+        </div>
       </div>
     </div>
   );
