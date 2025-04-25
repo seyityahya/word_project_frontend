@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 // SVG animation for the Spinner component
 const Spinner = ({ className }: { className?: string }) => {
@@ -27,8 +27,8 @@ const Spinner = ({ className }: { className?: string }) => {
         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
       ></path>
     </svg>
-  )
-}
+  );
+};
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
@@ -60,7 +60,7 @@ const buttonVariants = cva(
         icon: "size-9",
       },
       isLoading: {
-        true: 'cursor-not-allowed opacity-70'
+        true: "cursor-not-allowed opacity-70"
       }
     },
     defaultVariants: {
@@ -69,7 +69,7 @@ const buttonVariants = cva(
       isLoading: false
     }
   }
-)
+);
 
 function Button({
   isLoading,
@@ -88,7 +88,7 @@ function Button({
     startIcon?: React.ReactNode
     endIcon?: React.ReactNode
   }) {
-  const Comp = asChild ? Slot : "button"
+  const Comp = asChild ? Slot : "button";
 
   return (
     <Comp
@@ -110,7 +110,7 @@ function Button({
         </>
       )}
     </Comp>
-  )
+  );
 }
 
-export { Button, buttonVariants, Spinner }
+export { Button, buttonVariants, Spinner };
