@@ -6,6 +6,8 @@ import { CustomAccordion } from "@/components/core/accordion/CustomAccordion";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import CustomAlertDialog from "@/components/core/alert-dialog/CustomAlertDialog";
+import CustomAvatar from "@/components/core/avatar/CustomAvatar";
+import { Gender } from "@/enums/gender.enum";
 
 export default function Home() {
   const accordionItems = [
@@ -178,6 +180,23 @@ export default function Home() {
           onCancel={() => toast("Cancelled")}
           onAction={() => toast("Confirmed")}
         />
+      </div>
+
+      {/* Custom Avatar */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Custom Avatar Component
+        </h2>
+        <div className="flex items-center gap-4">
+          <CustomAvatar
+            src="https://picsum.photos/200/300"
+            alt="User Avatar"
+          />
+          <CustomAvatar gender={Gender.male} />
+          <CustomAvatar gender={Gender.female} />
+          <CustomAvatar gender={Gender.other} />
+          <CustomAvatar />
+        </div>
       </div>
     </div>
   );
