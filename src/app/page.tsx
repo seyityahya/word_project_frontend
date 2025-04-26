@@ -2,18 +2,22 @@
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Pencil, Trash, Trash2 } from "lucide-react";
-import { CustomAccordion } from "@/components/core/accordion/CustomAccordion";
+import { CustomAccordion } from "@/components/core/accordion";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
-import CustomAlertDialog from "@/components/core/alert-dialog/CustomAlertDialog";
-import CustomAvatar from "@/components/core/avatar/CustomAvatar";
+import CustomAlertDialog from "@/components/core/alert-dialog";
+import CustomAvatar from "@/components/core/avatar";
 import { Gender } from "@/enums/gender.enum";
-import { Combobox } from "@/components/core/combobox/combobox";
+import { Combobox } from "@/components/core/combobox";
 import { DatePicker } from "@/components/core/date-picker";
 import { useState } from "react";
 import { addDays } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { DatePickerWithRange } from "@/components/core/date-range-picker";
+import Drawer from "@/components/core/drawer";
+import { Label } from "@/components/ui/label";
+import Input from "@/components/core/input";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Home() {
   // Example data for combobox
@@ -322,6 +326,114 @@ export default function Home() {
         <div className="flex flex-col gap-4">
           <DatePicker date={date} onSelect={setDate} />
           <DatePickerWithRange date={rangeDate} setDate={setRangeDate} />
+        </div>
+      </div>
+
+      {/* Drawer */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Drawer Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <Drawer
+            trigger={<Button variant="outline">Başlıklı Drawer</Button>}
+            title="Drawer Başlığı"
+            description="Bu bir açıklama metnidir. Drawer'ın amacını açıklar."
+            content={
+              <div className="p-4">
+                <p>Drawer içeriği burada yer alır.</p>
+              </div>
+            }
+          />
+          <Drawer
+            trigger={<Button>Temel Drawer</Button>}
+            content={
+              <div className="p-4">
+                <p>Bu bir temel drawer içeriğidir.</p>
+              </div>
+            }
+          />
+          <Drawer
+            trigger={<Button variant="secondary">Footer&apos;lı Drawer</Button>}
+            title="İşlem Yap"
+            content={
+              <div className="p-4">
+                <p>İşlem yapmak istediğinize emin misiniz?</p>
+              </div>
+            }
+            footer={
+              <Button className="w-full" onClick={() => alert("İşlem tamamlandı!")}>
+                Onayla
+              </Button>
+            }
+            hasCloseButton={true}
+          />
+          <Drawer
+            trigger={<Button variant="outline">Form Aç</Button>}
+            title="Kullanıcı Bilgileri"
+            content={
+              <div className="p-4 space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Ad Soyad</Label>
+                  <Input id="name" placeholder="Ad Soyad giriniz" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">E-posta</Label>
+                  <Input id="email" type="email" placeholder="E-posta giriniz" />
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms">Şartları kabul ediyorum</Label>
+                </div>
+              </div>
+            }
+            footer={
+              <div className="flex flex-col gap-2 w-full">
+                <Button className="w-full">Kaydet</Button>
+                <Button variant="outline" className="w-full">İptal</Button>
+              </div>
+            }
+          />
+          <Drawer
+            trigger={<Button>Uzun İçerik</Button>}
+            title="Kullanım Koşulları"
+            description="Lütfen aşağıdaki koşulları okuyunuz."
+            content={
+              <div className="p-4">
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+              </div>
+            }
+            footer={
+              <Button variant="outline" className="w-full">Kabul Ediyorum</Button>
+            }
+          />
+          <Drawer
+            trigger={<Button variant="ghost">Hayalet Buton</Button>}
+            title="Ghost Buton ile Açıldı"
+            content={<div className="p-4">İçerik</div>}
+          />
+
+          <Drawer
+            trigger={<span className="text-purple-600 underline cursor-pointer">Metin Bağlantısı</span>}
+            title="Metin ile Açıldı"
+            content={<div className="p-4">İçerik</div>}
+          />
+
+          <Drawer
+            trigger={
+              <div className="border border-purple-200 p-2 rounded cursor-pointer hover:bg-purple-50">
+                <p>Özel Bir Element</p>
+                <p className="text-xs text-gray-500">Tıkla ve drawer&apos;ı aç</p>
+              </div>
+            }
+            title="Özel Element ile Açıldı"
+            content={<div className="p-4">İçerik</div>}
+          />
         </div>
       </div>
     </div>
