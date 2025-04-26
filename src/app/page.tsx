@@ -198,6 +198,8 @@ export default function Home() {
           <CustomAvatar />
         </div>
       </div>
+
+
     </div>
   );
 }
