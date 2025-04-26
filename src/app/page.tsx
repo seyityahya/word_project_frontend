@@ -11,7 +11,6 @@ import { Gender } from "@/enums/gender.enum";
 import { Combobox } from "@/components/core/combobox";
 import { useState } from "react";
 import { addDays } from "date-fns";
-import { DateRange } from "react-day-picker";
 import { DatePickerWithRange } from "@/components/core/date-range-picker";
 import Drawer from "@/components/core/drawer";
 import { Label } from "@/components/ui/label";
@@ -232,9 +231,7 @@ export default function Home() {
         </h2>
         <div className="flex flex-wrap gap-4">
           <Badge variant="default">Default</Badge>
-          <Badge startIcon={<CheckCircle />}>
-            Badge with Icon
-          </Badge>
+          <Badge startIcon={<CheckCircle />}>Badge with Icon</Badge>
           <Badge variant="error">Error</Badge>
           <Badge variant="success">Success</Badge>
           <Badge variant="warning">Warning</Badge>
@@ -267,10 +264,7 @@ export default function Home() {
           Custom Avatar Component
         </h2>
         <div className="flex items-center gap-4">
-          <CustomAvatar
-            src="https://picsum.photos/200/300"
-            alt="User Avatar"
-          />
+          <CustomAvatar src="https://picsum.photos/200/300" alt="User Avatar" />
           <CustomAvatar gender={Gender.male} />
           <CustomAvatar gender={Gender.female} />
           <CustomAvatar gender={Gender.other} />
@@ -285,7 +279,9 @@ export default function Home() {
         </h2>
         <div className="flex flex-col gap-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">Frameworks (Multiple Select)</label>
+            <label className="text-sm font-medium mb-1 block">
+              Frameworks (Multiple Select)
+            </label>
             <Combobox
               items={frameworkOptions}
               multiSelect={true}
@@ -296,7 +292,9 @@ export default function Home() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">Cities (Single Select)</label>
+            <label className="text-sm font-medium mb-1 block">
+              Cities (Single Select)
+            </label>
             <Combobox
               items={cityOptions}
               placeholder="Select a city..."
@@ -306,7 +304,9 @@ export default function Home() {
           </div>
 
           <div>
-            <label className="text-sm font-medium mb-1 block">Colors (Multiple Select)</label>
+            <label className="text-sm font-medium mb-1 block">
+              Colors (Multiple Select)
+            </label>
             <Combobox
               items={colorOptions}
               multiSelect={true}
@@ -362,7 +362,10 @@ export default function Home() {
               </div>
             }
             footer={
-              <Button className="w-full" onClick={() => alert("İşlem tamamlandı!")}>
+              <Button
+                className="w-full"
+                onClick={() => alert("İşlem tamamlandı!")}
+              >
                 Onayla
               </Button>
             }
@@ -379,7 +382,11 @@ export default function Home() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">E-posta</Label>
-                  <Input id="email" type="email" placeholder="E-posta giriniz" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="E-posta giriniz"
+                  />
                 </div>
                 <div className="flex items-center space-x-2">
                   <Checkbox id="terms" />
@@ -390,7 +397,9 @@ export default function Home() {
             footer={
               <div className="flex flex-col gap-2 w-full">
                 <Button className="w-full">Kaydet</Button>
-                <Button variant="outline" className="w-full">İptal</Button>
+                <Button variant="outline" className="w-full">
+                  İptal
+                </Button>
               </div>
             }
           />
@@ -400,16 +409,54 @@ export default function Home() {
             description="Lütfen aşağıdaki koşulları okuyunuz."
             content={
               <div className="p-4">
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
-                <p className="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.</p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
+                <p className="mb-4">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
+                  nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
+                  eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
+                  nisl nunc quis nisl.
+                </p>
               </div>
             }
             footer={
-              <Button variant="outline" className="w-full">Kabul Ediyorum</Button>
+              <Button variant="outline" className="w-full">
+                Kabul Ediyorum
+              </Button>
             }
           />
           <Drawer
@@ -419,7 +466,11 @@ export default function Home() {
           />
 
           <Drawer
-            trigger={<span className="text-purple-600 underline cursor-pointer">Metin Bağlantısı</span>}
+            trigger={
+              <span className="text-purple-600 underline cursor-pointer">
+                Metin Bağlantısı
+              </span>
+            }
             title="Metin ile Açıldı"
             content={<div className="p-4">İçerik</div>}
           />
@@ -428,7 +479,9 @@ export default function Home() {
             trigger={
               <div className="border border-purple-200 p-2 rounded cursor-pointer hover:bg-purple-50">
                 <p>Özel Bir Element</p>
-                <p className="text-xs text-gray-500">Tıkla ve drawer&apos;ı aç</p>
+                <p className="text-xs text-gray-500">
+                  Tıkla ve drawer&apos;ı aç
+                </p>
               </div>
             }
             title="Özel Element ile Açıldı"
