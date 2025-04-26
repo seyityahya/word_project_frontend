@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Pencil, Trash, Trash2 } from "lucide-react";
-import { CustomAccordion } from "@/components/accordion/CustomAccordion";
+import { CustomAccordion } from "@/components/core/accordion/CustomAccordion";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
+import CustomAlertDialog from "@/components/core/alert-dialog/CustomAlertDialog";
 
 export default function Home() {
   const accordionItems = [
@@ -161,6 +162,22 @@ export default function Home() {
           <Badge variant="ghost">Ghost</Badge>
           <Badge variant="link">Link</Badge>
         </div>
+      </div>
+
+      {/* Alert Dialog */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Alert Dialog Component
+        </h2>
+        <CustomAlertDialog
+          trigger={<Button>Open Alert Dialog</Button>}
+          title="Alert Dialog Title"
+          description="This is an alert dialog description."
+          cancelText="Cancel"
+          actionText="Confirm"
+          onCancel={() => toast("Cancelled")}
+          onAction={() => toast("Confirmed")}
+        />
       </div>
     </div>
   );
