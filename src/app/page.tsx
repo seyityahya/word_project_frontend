@@ -9,7 +9,6 @@ import CustomAlertDialog from "@/components/core/alert-dialog";
 import CustomAvatar from "@/components/core/avatar";
 import { Gender } from "@/enums/gender.enum";
 import { Combobox } from "@/components/core/combobox";
-import { DatePicker } from "@/components/core/date-picker";
 import { useState } from "react";
 import { addDays } from "date-fns";
 import { DateRange } from "react-day-picker";
@@ -18,8 +17,71 @@ import Drawer from "@/components/core/drawer";
 import { Label } from "@/components/ui/label";
 import Input from "@/components/core/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { DatePicker } from "@/components/core/date-picker";
 
 export default function Home() {
+  // Example data for combobox
+  const frameworkOptions = [
+    { value: "next", label: "Next.js" },
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue.js" },
+    { value: "angular", label: "Angular" },
+    { value: "svelte", label: "Svelte" },
+  ];
+
+  const cityOptions = [
+    { value: "istanbul", label: "İstanbul" },
+    { value: "ankara", label: "Ankara" },
+    { value: "izmir", label: "İzmir" },
+    { value: "antalya", label: "Antalya" },
+    { value: "bursa", label: "Bursa" },
+    { value: "adana", label: "Adana" },
+    { value: "konya", label: "Konya" },
+    { value: "gaziantep", label: "Gaziantep" },
+    { value: "kayseri", label: "Kayseri" },
+    { value: "mugla", label: "Muğla" },
+    { value: "trabzon", label: "Trabzon" },
+    { value: "samsun", label: "Samsun" },
+    { value: "eskisehir", label: "Eskişehir" },
+    { value: "kocaeli", label: "Kocaeli" },
+    { value: "tekirdag", label: "Tekirdağ" },
+    { value: "edirne", label: "Edirne" },
+    { value: "balikesir", label: "Balıkesir" },
+    { value: "manisa", label: "Manisa" },
+    { value: "denizli", label: "Denizli" },
+    { value: "mardin", label: "Mardin" },
+    { value: "batman", label: "Batman" },
+    { value: "siirt", label: "Siirt" },
+    { value: "sanliurfa", label: "Şanlıurfa" },
+    { value: "adiyaman", label: "Adıyaman" },
+    { value: "malatya", label: "Malatya" },
+    { value: "kahramanmaras", label: "Kahramanmaraş" },
+    { value: "osmaniye", label: "Osmaniye" },
+    { value: "hatay", label: "Hatay" },
+    { value: "kilis", label: "Kilis" },
+  ];
+
+  const colorOptions = [
+    { value: "red", label: "Kırmızı" },
+    { value: "blue", label: "Mavi" },
+    { value: "green", label: "Yeşil" },
+    { value: "yellow", label: "Sarı" },
+    { value: "purple", label: "Mor" },
+    { value: "orange", label: "Turuncu" },
+    { value: "pink", label: "Pembe" },
+    { value: "black", label: "Siyah" },
+    { value: "white", label: "Beyaz" },
+    { value: "gray", label: "Gri" },
+    { value: "brown", label: "Kahverengi" },
+    { value: "cyan", label: "Camgöbeği" },
+    { value: "magenta", label: "Macenta" },
+    { value: "lime", label: "Limon Yeşili" },
+    { value: "teal", label: "Deniz Mavisi" },
+    { value: "navy", label: "Lacivert" },
+    { value: "maroon", label: "Bordo" },
+    { value: "olive", label: "Zeytin Yeşili" },
+  ];
+
   const accordionItems = [
     {
       value: "item-1",
@@ -40,6 +102,13 @@ export default function Home() {
         "Yes, you can use and customize these components for your own projects.",
     },
   ];
+
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
+  const [rangeDate, setRangeDate] = useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  });
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
