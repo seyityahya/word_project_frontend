@@ -1,13 +1,43 @@
 "use client";
 import CheckBox from "@/components/core/checkbox";
 import InputBox from "@/components/core/input";
+import { CustomSelect, GroupedSelect } from "@/components/core/select";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
+
+const fruitOptions = [
+  { label: "Apple", value: "apple" },
+  { label: "Banana", value: "banana" },
+  { label: "Blueberry", value: "blueberry" },
+  { label: "Grapes", value: "grapes" },
+  { label: "Pineapple", value: "pineapple" },
+];
+
+const groupedOptions = [
+  {
+    label: "Fruits",
+    options: [
+      { label: "Apple", value: "apple" },
+      { label: "Banana", value: "banana" },
+      { label: "Grapes", value: "grapes" },
+    ],
+  },
+  {
+    label: "Vegetables",
+    options: [
+      { label: "Carrot", value: "carrot" },
+      { label: "Broccoli", value: "broccoli" },
+      { label: "Spinach", value: "spinach" },
+    ],
+  },
+];
 
 export default function Playground() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [selectedFruit, setSelectedFruit] = useState("");
+  const [selectedValue, setSelectedValue] = useState("");
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -89,6 +119,27 @@ export default function Playground() {
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             }
+          />
+        </div>
+      </div>
+
+      {/* select */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl gap-8">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Input Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <CustomSelect
+            dataSource={fruitOptions}
+            value={selectedFruit}
+            onChange={setSelectedFruit}
+            placeholder="Select a fruit"
+            label="Fruits"
+          />
+          <GroupedSelect
+            data={groupedOptions}
+            value={selectedValue}
+            onChange={setSelectedValue}
           />
         </div>
       </div>
