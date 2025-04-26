@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CustomSelect, GroupedSelect } from "@/components/core/select";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
+import { InputOTP } from "@/components/core/input-otp";
 
 const fruitOptions = [
   { label: "Apple", value: "apple" },
@@ -41,6 +42,7 @@ export default function Playground() {
   const [selectedFruit, setSelectedFruit] = useState("");
   const [selectedValue, setSelectedValue] = useState("");
   const [openDialog, setOpenDialog] = useState(false);
+  const [otp, setOtp] = useState("");
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -133,7 +135,7 @@ export default function Playground() {
       {/* select */}
       <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl gap-8">
         <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
-          Input Component
+          Select Component
         </h2>
         <div className="flex flex-col gap-4">
           <CustomSelect
@@ -184,6 +186,41 @@ export default function Playground() {
               </div>
             </div>
           </DialogBase>
+        </div>
+      </div>
+
+      {/* input otp */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl gap-8">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Input Otp Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <InputOTP
+            value={otp}
+            onChange={(val) => setOtp(val)}
+            maxLength={6}
+            segments={2}
+          />
+          <InputOTP
+            value={otp}
+            onChange={(val) => setOtp(val)}
+            maxLength={6}
+            segments={3}
+          />
+          <InputOTP
+            value={otp}
+            onChange={(val) => setOtp(val)}
+            maxLength={6}
+            segments={1}
+          />
+          <InputOTP
+            value={otp}
+            onChange={(val) => setOtp(val)}
+            maxLength={6}
+            segments={1}
+            title="OTP Kodunuzu Girin"
+            subtitle="Telefonunuza gönderilen 6 haneli kodu giriniz."
+          />
         </div>
       </div>
     </div>
