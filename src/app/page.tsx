@@ -6,8 +6,78 @@ import { CustomAccordion } from "@/components/core/accordion/CustomAccordion";
 import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import CustomAlertDialog from "@/components/core/alert-dialog/CustomAlertDialog";
+import CustomAvatar from "@/components/core/avatar/CustomAvatar";
+import { Gender } from "@/enums/gender.enum";
+import { Combobox } from "@/components/core/combobox/combobox";
+import { DatePicker } from "@/components/core/date-picker";
+import { useState } from "react";
+import { addDays } from "date-fns";
+import { DateRange } from "react-day-picker";
+import { DatePickerWithRange } from "@/components/core/date-range-picker";
 
 export default function Home() {
+  // Example data for combobox
+  const frameworkOptions = [
+    { value: "next", label: "Next.js" },
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue.js" },
+    { value: "angular", label: "Angular" },
+    { value: "svelte", label: "Svelte" },
+  ];
+
+  const cityOptions = [
+    { value: "istanbul", label: "İstanbul" },
+    { value: "ankara", label: "Ankara" },
+    { value: "izmir", label: "İzmir" },
+    { value: "antalya", label: "Antalya" },
+    { value: "bursa", label: "Bursa" },
+    { value: "adana", label: "Adana" },
+    { value: "konya", label: "Konya" },
+    { value: "gaziantep", label: "Gaziantep" },
+    { value: "kayseri", label: "Kayseri" },
+    { value: "mugla", label: "Muğla" },
+    { value: "trabzon", label: "Trabzon" },
+    { value: "samsun", label: "Samsun" },
+    { value: "eskisehir", label: "Eskişehir" },
+    { value: "kocaeli", label: "Kocaeli" },
+    { value: "tekirdag", label: "Tekirdağ" },
+    { value: "edirne", label: "Edirne" },
+    { value: "balikesir", label: "Balıkesir" },
+    { value: "manisa", label: "Manisa" },
+    { value: "denizli", label: "Denizli" },
+    { value: "mardin", label: "Mardin" },
+    { value: "batman", label: "Batman" },
+    { value: "siirt", label: "Siirt" },
+    { value: "sanliurfa", label: "Şanlıurfa" },
+    { value: "adiyaman", label: "Adıyaman" },
+    { value: "malatya", label: "Malatya" },
+    { value: "kahramanmaras", label: "Kahramanmaraş" },
+    { value: "osmaniye", label: "Osmaniye" },
+    { value: "hatay", label: "Hatay" },
+    { value: "kilis", label: "Kilis" },
+  ];
+
+  const colorOptions = [
+    { value: "red", label: "Kırmızı" },
+    { value: "blue", label: "Mavi" },
+    { value: "green", label: "Yeşil" },
+    { value: "yellow", label: "Sarı" },
+    { value: "purple", label: "Mor" },
+    { value: "orange", label: "Turuncu" },
+    { value: "pink", label: "Pembe" },
+    { value: "black", label: "Siyah" },
+    { value: "white", label: "Beyaz" },
+    { value: "gray", label: "Gri" },
+    { value: "brown", label: "Kahverengi" },
+    { value: "cyan", label: "Camgöbeği" },
+    { value: "magenta", label: "Macenta" },
+    { value: "lime", label: "Limon Yeşili" },
+    { value: "teal", label: "Deniz Mavisi" },
+    { value: "navy", label: "Lacivert" },
+    { value: "maroon", label: "Bordo" },
+    { value: "olive", label: "Zeytin Yeşili" },
+  ];
+
   const accordionItems = [
     {
       value: "item-1",
@@ -28,6 +98,13 @@ export default function Home() {
         "Yes, you can use and customize these components for your own projects.",
     },
   ];
+
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
+  const [rangeDate, setRangeDate] = useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  });
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
@@ -178,6 +255,74 @@ export default function Home() {
           onCancel={() => toast("Cancelled")}
           onAction={() => toast("Confirmed")}
         />
+      </div>
+
+      {/* Custom Avatar */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Custom Avatar Component
+        </h2>
+        <div className="flex items-center gap-4">
+          <CustomAvatar
+            src="https://picsum.photos/200/300"
+            alt="User Avatar"
+          />
+          <CustomAvatar gender={Gender.male} />
+          <CustomAvatar gender={Gender.female} />
+          <CustomAvatar gender={Gender.other} />
+          <CustomAvatar />
+        </div>
+      </div>
+
+      {/* Combobox */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Combobox Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <div>
+            <label className="text-sm font-medium mb-1 block">Frameworks (Multiple Select)</label>
+            <Combobox
+              items={frameworkOptions}
+              multiSelect={true}
+              placeholder="Select frameworks..."
+              searchPlaceholder="Search frameworks..."
+              onChange={(values) => console.log("Selected frameworks:", values)}
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-1 block">Cities (Single Select)</label>
+            <Combobox
+              items={cityOptions}
+              placeholder="Select a city..."
+              searchPlaceholder="Search cities..."
+              onChange={(value) => console.log("Selected city:", value)}
+            />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-1 block">Colors (Multiple Select)</label>
+            <Combobox
+              items={colorOptions}
+              multiSelect={true}
+              placeholder="Select colors..."
+              searchPlaceholder="Search colors..."
+              onChange={(values) => console.log("Selected colors:", values)}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Datepicker */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Datepicker Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <DatePicker date={date} onSelect={setDate} />
+          <DatePickerWithRange date={rangeDate} setDate={setRangeDate} />
+        </div>
       </div>
     </div>
   );
