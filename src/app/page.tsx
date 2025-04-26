@@ -11,6 +11,9 @@ import { Gender } from "@/enums/gender.enum";
 import { Combobox } from "@/components/core/combobox/combobox";
 import { DatePicker } from "@/components/core/date-picker";
 import { useState } from "react";
+import { addDays } from "date-fns";
+import { DateRange } from "react-day-picker";
+import { DatePickerWithRange } from "@/components/core/date-range-picker";
 
 export default function Home() {
   // Example data for combobox
@@ -97,6 +100,11 @@ export default function Home() {
   ];
 
   const [date, setDate] = useState<Date | undefined>(undefined);
+
+  const [rangeDate, setRangeDate] = useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  });
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
@@ -313,6 +321,7 @@ export default function Home() {
         </h2>
         <div className="flex flex-col gap-4">
           <DatePicker date={date} onSelect={setDate} />
+          <DatePickerWithRange date={rangeDate} setDate={setRangeDate} />
         </div>
       </div>
     </div>
