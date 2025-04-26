@@ -13,7 +13,6 @@ interface ReusableInputProps {
   rightIcon?: ReactNode;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  className?: string;
 }
 
 export default function InputBox({
@@ -26,10 +25,9 @@ export default function InputBox({
   rightIcon,
   value,
   onChange,
-  className,
 }: ReusableInputProps) {
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className="w-full max-w-sm space-y-2">
       {label && <Label htmlFor={id}>{label}</Label>}
       <div className="relative">
         {icon && (
