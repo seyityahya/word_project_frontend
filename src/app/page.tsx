@@ -9,6 +9,8 @@ import CustomAlertDialog from "@/components/core/alert-dialog/CustomAlertDialog"
 import CustomAvatar from "@/components/core/avatar/CustomAvatar";
 import { Gender } from "@/enums/gender.enum";
 import { Combobox } from "@/components/core/combobox/combobox";
+import { DatePicker } from "@/components/core/date-picker";
+import { useState } from "react";
 
 export default function Home() {
   // Example data for combobox
@@ -93,6 +95,8 @@ export default function Home() {
         "Yes, you can use and customize these components for your own projects.",
     },
   ];
+
+  const [date, setDate] = useState<Date | undefined>(undefined);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
@@ -299,6 +303,16 @@ export default function Home() {
               onChange={(values) => console.log("Selected colors:", values)}
             />
           </div>
+        </div>
+      </div>
+
+      {/* Datepicker */}
+      <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+        <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+          Datepicker Component
+        </h2>
+        <div className="flex flex-col gap-4">
+          <DatePicker date={date} onSelect={setDate} />
         </div>
       </div>
     </div>
