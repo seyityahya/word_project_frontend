@@ -18,6 +18,7 @@ import Drawer from "@/components/core/drawer";
 import { Label } from "@/components/ui/label";
 import Input from "@/components/core/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 
 export default function Playground() {
   // Example data for combobox
@@ -105,35 +106,49 @@ export default function Playground() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-8 gap-8">
+      {/* Theme Switcher Card */}
+      <ThemeSwitcherComponent />
+
       {/* Checkbox card */}
       <CheckBoxComponent />
+
       {/* input */}
       <InputComponent />
+
       {/* select */}
       <SelectComponent />
+
       {/* Dialog */}
       <DialogComponent />
+
       {/* input otp */}
       <OTPComponent />
 
       {/* Buttons card */}
       <ButtonComponent />
+
       {/* Accordion example */}
       <AccordionComponent items={accordionItems} />
+
       {/* Toast example */}
       <ToastComponent />
+
       {/* Badge */}
       <BadgeComponent />
+
       {/* Alert Dialog */}
       <AlertDialogComponent />
+
       {/* Custom Avatar */}
       <AvatarComponent />
+
       {/* Combobox */}
       <ComboboxComponent
         frameworkOptions={frameworkOptions}
         cityOptions={cityOptions}
         colorOptions={colorOptions}
       />
+
       {/* Drawer */}
       <DrawerComponent />
     </div>
@@ -767,6 +782,37 @@ const DrawerComponent = () => {
           title="Özel Element ile Açıldı"
           content={<div className="p-4">İçerik</div>}
         />
+      </div>
+    </div>
+  );
+};
+
+const ThemeSwitcherComponent = () => {
+  return (
+    <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+      <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+        Theme Switcher
+      </h2>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <p className="text-foreground">
+            Change your preferred theme (Light/Dark/System)
+          </p>
+          <ThemeSwitcher />
+        </div>
+        <div className="mt-4 p-4 bg-background border border-border rounded-md">
+          <p className="text-muted-foreground text-sm mb-2">Theme demonstration</p>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-card p-3 rounded border border-border">Card background</div>
+            <div className="bg-popover p-3 rounded border border-border">Popover background</div>
+            <div className="bg-primary text-primary-foreground p-3 rounded">Primary color</div>
+            <div className="bg-secondary text-secondary-foreground p-3 rounded">Secondary color</div>
+            <div className="bg-muted text-muted-foreground p-3 rounded">Muted color</div>
+            <div className="bg-accent text-accent-foreground p-3 rounded">Accent color</div>
+            <div className="bg-destructive text-destructive-foreground p-3 rounded">Destructive color</div>
+            <div className="bg-purple-600 text-white p-3 rounded">Purple theme color</div>
+          </div>
+        </div>
       </div>
     </div>
   );
