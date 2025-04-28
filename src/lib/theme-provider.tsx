@@ -9,6 +9,9 @@ type ThemeProviderProps = {
     children: React.ReactNode;
     defaultTheme?: Theme;
     storageKey?: string;
+    attribute?: string;
+    enableSystem?: boolean;
+    disableTransitionOnChange?: boolean;
 };
 
 type ThemeProviderState = {
@@ -27,6 +30,8 @@ export function ThemeProvider({
     children,
     defaultTheme = "system",
     storageKey = "theme-preference",
+    enableSystem = true, // Default to enabling system theme
+    disableTransitionOnChange = false,
     ...props
 }: ThemeProviderProps) {
     const [theme, setTheme] = useState<Theme>(defaultTheme);
@@ -36,20 +41,26 @@ export function ThemeProvider({
 
         if (savedTheme) {
             setTheme(savedTheme);
-        } else if (defaultTheme === "system") {
+        } else if (defaultTheme === "system" && enableSystem) {
             const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
                 ? "dark"
                 : "light";
             setTheme(systemTheme);
         }
-    }, [defaultTheme, storageKey]);
+    }, [defaultTheme, storageKey, enableSystem]);
 
     useEffect(() => {
         const root = window.document.documentElement;
 
+        if (disableTransitionOnChange) {
+            root.classList.add("transition-none");
+            // Force a reflow to make sure the class is applied immediately
+            window.getComputedStyle(root).getPropertyValue("opacity");
+        }
+
         root.classList.remove("light", "dark");
 
-        if (theme === "system") {
+        if (theme === "system" && enableSystem) {
             const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
                 ? "dark"
                 : "light";
@@ -57,7 +68,14 @@ export function ThemeProvider({
         } else {
             root.classList.add(theme);
         }
-    }, [theme]);
+
+        if (disableTransitionOnChange) {
+            // Remove the class after the changes were made
+            setTimeout(() => {
+                root.classList.remove("transition-none");
+            }, 0);
+        }
+    }, [theme, disableTransitionOnChange, enableSystem]);
 
     const value = {
         theme,

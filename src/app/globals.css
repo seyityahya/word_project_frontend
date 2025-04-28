@@ -140,6 +140,11 @@
   --warning-foreground: oklch(0.13 0.028 261.692);
 }
 
+/* Class to disable transitions temporarily when theme changes */
+.transition-none * {
+  transition: none !important;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
