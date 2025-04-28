@@ -106,7 +106,7 @@ export function Combobox({
                     return item ? (
                         <Badge
                             key={val}
-                            className="bg-purple-100 hover:bg-purple-100 text-purple-700 border-none px-2 py-1 flex items-center"
+                            className="bg-accent/40 dark:bg-accent/30 text-accent-foreground dark:text-accent-foreground border-none px-2 py-1 flex items-center"
                         >
                             <span>{item.label}</span>
                             <span
@@ -143,35 +143,35 @@ export function Combobox({
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
-                        className="w-full justify-between min-h-10 bg-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50 border-0 shadow-sm"
+                        className="w-full justify-between min-h-10 bg-background/50 hover:bg-background/80 focus:bg-background/80 active:bg-background/80 border shadow-sm"
                     >
                         <div className="flex items-center flex-wrap gap-1 pr-2 w-full">
                             {multiSelect && Array.isArray(value) && value.length > 0 ? (
                                 renderSelectedItems()
                             ) : (
-                                <span className="truncate text-purple-700">{getDisplayText()}</span>
+                                <span className="truncate text-foreground">{getDisplayText()}</span>
                             )}
                         </div>
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-purple-500" />
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 text-purple-500 dark:text-purple-400" />
                     </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-full p-0 bg-purple-50 border-purple-200" align="start">
-                    <Command className="bg-purple-50">
-                        <CommandInput placeholder={searchPlaceholder} className="h-9 bg-purple-50 border-b-purple-200 focus:ring-purple-300" />
-                        <CommandList className="bg-purple-50">
-                            <CommandEmpty className="text-purple-700">{emptyMessage}</CommandEmpty>
-                            <CommandGroup className="bg-purple-50">
+                <PopoverContent className="w-full p-0 bg-popover border-border" align="start">
+                    <Command className="bg-transparent">
+                        <CommandInput placeholder={searchPlaceholder} className="h-9 bg-transparent border-b border-border focus:ring-purple-400/50" />
+                        <CommandList className="bg-transparent">
+                            <CommandEmpty className="text-muted-foreground">{emptyMessage}</CommandEmpty>
+                            <CommandGroup className="bg-transparent">
                                 {items.map((item) => (
                                     <CommandItem
                                         key={item.value}
                                         value={item.value}
                                         onSelect={handleSelect}
-                                        className="text-purple-800 hover:bg-purple-100 aria-selected:bg-purple-100"
+                                        className="text-foreground hover:bg-accent/50 aria-selected:bg-accent/50"
                                     >
                                         {item.label}
                                         <Check
                                             className={cn(
-                                                "ml-auto h-4 w-4 text-purple-600",
+                                                "ml-auto h-4 w-4 text-purple-600 dark:text-purple-400",
                                                 Array.isArray(value)
                                                     ? value.includes(item.value) ? "opacity-100" : "opacity-0"
                                                     : value === item.value ? "opacity-100" : "opacity-0"
