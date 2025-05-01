@@ -19,6 +19,7 @@ import { Label } from "@/components/ui/label";
 import Input from "@/components/core/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
+import { DatePicker, DateRangePicker, InputDatePicker } from "@/components/core/date-picker";
 
 export default function Playground() {
   // Example data for combobox
@@ -114,6 +115,9 @@ export default function Playground() {
 
       {/* input */}
       <InputComponent />
+
+      {/* Calendar component with DatePicker */}
+      <DatePickerComponent />
 
       {/* select */}
       <SelectComponent />
@@ -811,6 +815,60 @@ const ThemeSwitcherComponent = () => {
             <div className="bg-accent text-accent-foreground p-3 rounded">Accent color</div>
             <div className="bg-destructive text-destructive-foreground p-3 rounded">Destructive color</div>
             <div className="bg-purple-600 text-white p-3 rounded">Purple theme color</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const DatePickerComponent = () => {
+  const [date, setDate] = useState<Date | undefined>(new Date());
+  const [dateRange, setDateRange] = useState<{
+    from: Date | undefined;
+    to: Date | undefined;
+  }>({
+    from: new Date(),
+    to: undefined,
+  });
+  const [inputDate, setInputDate] = useState<Date | undefined>(new Date());
+
+  return (
+    <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
+      <h2 className="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">
+        Date Picker Component
+      </h2>
+
+      <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-semibold">Tarih Seçici (Button)</h3>
+            <p className="text-sm text-muted-foreground mb-2">Tıklayınca açılan tarih seçici</p>
+            <DatePicker
+              date={date}
+              setDate={setDate}
+              placeholder="Tarih seçin"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-semibold">Tarih Aralığı Seçici</h3>
+            <p className="text-sm text-muted-foreground mb-2">Tıklayınca açılan tarih aralığı seçici</p>
+            <DateRangePicker
+              dateRange={dateRange}
+              setDateRange={setDateRange}
+              placeholder="Tarih aralığı seçin"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-semibold">Input Tarih Seçici</h3>
+            <p className="text-sm text-muted-foreground mb-2">Input tarzında tarih seçici</p>
+            <InputDatePicker
+              date={inputDate}
+              setDate={setInputDate}
+              placeholder="GG/AA/YYYY"
+            />
           </div>
         </div>
       </div>
