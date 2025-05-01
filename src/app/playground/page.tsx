@@ -20,6 +20,7 @@ import Input from "@/components/core/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import { DatePicker, DateRangePicker, InputDatePicker } from "@/components/core/date-picker";
+import { DateRange } from "react-day-picker";
 
 export default function Playground() {
   // Example data for combobox
@@ -824,10 +825,7 @@ const ThemeSwitcherComponent = () => {
 
 const DatePickerComponent = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
-  const [dateRange, setDateRange] = useState<{
-    from: Date | undefined;
-    to: Date | undefined;
-  }>({
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
     from: new Date(),
     to: undefined,
   });

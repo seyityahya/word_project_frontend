@@ -3,6 +3,7 @@
 import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
+import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -66,7 +67,7 @@ export function DatePicker({
                     initialFocus
                 />
                 {showClearButton && date && (
-                    <div className="p-2 border-t">
+                    <div className="p-2 border-t border-border/30">
                         <Button
                             variant="ghost"
                             className="w-full text-muted-foreground hover:text-foreground"
@@ -86,11 +87,8 @@ export function DatePicker({
 }
 
 export interface DateRangePickerProps {
-    dateRange: {
-        from: Date | undefined;
-        to: Date | undefined;
-    };
-    setDateRange: (dateRange: { from: Date | undefined; to: Date | undefined }) => void;
+    dateRange: DateRange | undefined;
+    setDateRange: (dateRange: DateRange | undefined) => void;
     placeholder?: string;
     className?: string;
     disabled?: boolean;
@@ -114,13 +112,13 @@ export function DateRangePicker({
                     variant="outline"
                     className={cn(
                         "w-full justify-start text-left font-normal",
-                        !dateRange.from && "text-muted-foreground",
+                        !dateRange?.from && "text-muted-foreground",
                         className
                     )}
                     disabled={disabled}
                 >
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {dateRange.from ? (
+                    {dateRange?.from ? (
                         dateRange.to ? (
                             <span>
                                 {format(dateRange.from, "P", { locale: tr })} -{" "}
@@ -142,13 +140,13 @@ export function DateRangePicker({
                     numberOfMonths={2}
                     initialFocus
                 />
-                {showClearButton && dateRange.from && (
-                    <div className="p-2 border-t">
+                {showClearButton && dateRange?.from && (
+                    <div className="p-2 border-t border-border/30">
                         <Button
                             variant="ghost"
                             className="w-full text-muted-foreground hover:text-foreground"
                             onClick={() => {
-                                setDateRange({ from: undefined, to: undefined });
+                                setDateRange(undefined);
                                 setOpen(false);
                             }}
                             size="sm"
@@ -201,7 +199,7 @@ export function InputDatePicker({
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     className={cn(
-                        "w-full rounded-md border border-input bg-transparent px-3 py-2 pr-10 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-purple-400",
+                        "w-full rounded-md border border-input bg-transparent px-3 py-2 pr-10 text-sm shadow-sm placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary focus-visible:ring-primary/70 dark:focus:ring-primary/50 dark:focus-visible:ring-primary/40",
                         className
                     )}
                     disabled={disabled}
@@ -210,7 +208,7 @@ export function InputDatePicker({
                 <PopoverTrigger asChild>
                     <Button
                         variant="ghost"
-                        className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground"
+                        className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground hover:text-foreground"
                         disabled={disabled}
                     >
                         <CalendarIcon className="h-4 w-4" />
