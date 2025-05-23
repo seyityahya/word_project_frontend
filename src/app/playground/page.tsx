@@ -4,7 +4,16 @@ import InputBox from "@/components/core/input";
 import { DialogBase } from "@/components/core/dialog";
 import { Button } from "@/components/ui/button";
 import { CustomSelect, GroupedSelect } from "@/components/core/select";
-import { CheckCircle, Eye, EyeOff, Lock, Mail, Pencil, Trash, Trash2 } from "lucide-react";
+import {
+  CheckCircle,
+  Eye,
+  EyeOff,
+  Lock,
+  Mail,
+  Pencil,
+  Trash,
+  Trash2,
+} from "lucide-react";
 import { useState } from "react";
 import { InputOTP } from "@/components/core/input-otp";
 import { CustomAccordion } from "@/components/core/accordion";
@@ -568,11 +577,11 @@ const AvatarComponent = () => {
 const ComboboxComponent = ({
   frameworkOptions,
   cityOptions,
-  colorOptions
+  colorOptions,
 }: {
-  frameworkOptions: any[],
-  cityOptions: any[],
-  colorOptions: any[]
+  frameworkOptions: any[];
+  cityOptions: any[];
+  colorOptions: any[];
 }) => {
   return (
     <div className="bg-card shadow-lg rounded-lg p-6 w-full max-w-3xl">
@@ -676,11 +685,7 @@ const DrawerComponent = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email">E-posta</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="E-posta giriniz"
-                />
+                <Input id="email" type="email" placeholder="E-posta giriniz" />
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox id="terms" />
@@ -704,46 +709,46 @@ const DrawerComponent = () => {
           content={
             <div className="p-4">
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
               <p className="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet
-                nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl
-                eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam
-                nisl nunc quis nisl.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc,
+                quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget
+                aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl
+                nunc quis nisl.
               </p>
             </div>
           }
@@ -774,9 +779,7 @@ const DrawerComponent = () => {
           trigger={
             <div className="border border-purple-200 p-2 rounded cursor-pointer hover:bg-purple-50">
               <p>Özel Bir Element</p>
-              <p className="text-xs text-gray-500">
-                Tıkla ve drawer&apos;ı aç
-              </p>
+              <p className="text-xs text-gray-500">Tıkla ve drawer&apos;ı aç</p>
             </div>
           }
           title="Özel Element ile Açıldı"
@@ -801,16 +804,34 @@ const ThemeSwitcherComponent = () => {
           <ThemeSwitcher />
         </div>
         <div className="mt-4 p-4 bg-background border border-border rounded-md">
-          <p className="text-muted-foreground text-sm mb-2">Theme demonstration</p>
+          <p className="text-muted-foreground text-sm mb-2">
+            Theme demonstration
+          </p>
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-card p-3 rounded border border-border">Card background</div>
-            <div className="bg-popover p-3 rounded border border-border">Popover background</div>
-            <div className="bg-primary text-primary-foreground p-3 rounded">Primary color</div>
-            <div className="bg-secondary text-secondary-foreground p-3 rounded">Secondary color</div>
-            <div className="bg-muted text-muted-foreground p-3 rounded">Muted color</div>
-            <div className="bg-accent text-accent-foreground p-3 rounded">Accent color</div>
-            <div className="bg-destructive text-destructive-foreground p-3 rounded">Destructive color</div>
-            <div className="bg-purple-600 text-white p-3 rounded">Purple theme color</div>
+            <div className="bg-card p-3 rounded border border-border">
+              Card background
+            </div>
+            <div className="bg-popover p-3 rounded border border-border">
+              Popover background
+            </div>
+            <div className="bg-primary text-primary-foreground p-3 rounded">
+              Primary color
+            </div>
+            <div className="bg-secondary text-secondary-foreground p-3 rounded">
+              Secondary color
+            </div>
+            <div className="bg-muted text-muted-foreground p-3 rounded">
+              Muted color
+            </div>
+            <div className="bg-accent text-accent-foreground p-3 rounded">
+              Accent color
+            </div>
+            <div className="bg-destructive text-destructive-foreground p-3 rounded">
+              Destructive color
+            </div>
+            <div className="bg-purple-600 text-white p-3 rounded">
+              Purple theme color
+            </div>
           </div>
         </div>
       </div>
