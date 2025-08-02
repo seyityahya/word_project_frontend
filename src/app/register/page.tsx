@@ -1,4 +1,8 @@
 "use client";
+
+import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import Card from "@/components/core/card";
 import InputBox from "@/components/core/input";
 import { Button } from "@/components/ui/button";
@@ -6,13 +10,14 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRegister } from "@/lib/hooks/api-hooks";
 
-const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function RegisterPage() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    username: "",
+  });
   const [showPassword, setShowPassword] = useState(false);
   const route = useRouter();
   const eyeLeftRef = useRef(null);
@@ -20,6 +25,8 @@ const Register = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [focusTarget, setFocusTarget] = useState(null);
+
+  const registerMutation = useRegister();
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -52,18 +59,21 @@ const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    if (res.ok) {
+
+    try {
+      await registerMutation.mutateAsync(formData);
+      toast.success("Kayıt başarılı! Giriş yapılıyor...");
       route.push("/");
-    } else {
-      alert("Login failed");
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Kayıt başarısız!");
     }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -96,15 +106,16 @@ const Register = () => {
         <form id="login-form" onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-6">
             <div className="flex flex-col space-y-2">
-              <Label htmlFor="name" className="text-gray-300">
-                Name
+              <Label htmlFor="username" className="text-gray-300">
+                Username
               </Label>
               <InputBox
-                id="name"
-                placeholder="Enter your name"
-                value={name}
+                id="username"
+                name="username"
+                placeholder="Enter your username"
+                value={formData.username}
                 icon={<User size={18} />}
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleChange}
                 className="bg-gray-800/60 border-gray-700 text-white placeholder:text-gray-500"
               />
             </div>
@@ -114,13 +125,14 @@ const Register = () => {
               </Label>
               <InputBox
                 id="email"
+                name="email"
                 type="email"
                 placeholder="Enter your email address"
-                value={email}
+                value={formData.email}
                 onFocus={() => setFocusTarget(emailRef.current)}
                 onBlur={() => setFocusTarget(null)}
                 icon={<Mail size={18} />}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleChange}
                 className="bg-gray-800/60 border-gray-700 text-white placeholder:text-gray-500"
               />
             </div>
@@ -133,9 +145,10 @@ const Register = () => {
               </div>
               <InputBox
                 id="password"
+                name="password"
                 placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}
-                value={password}
+                value={formData.password}
                 onFocus={() => setFocusTarget(passwordRef.current)}
                 onBlur={() => setFocusTarget(null)}
                 icon={<Lock size={18} />}
@@ -148,7 +161,7 @@ const Register = () => {
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
                 }
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handleChange}
                 className="bg-gray-800/60 border-gray-700 text-white placeholder:text-gray-500"
               />
             </div>
@@ -177,6 +190,4 @@ const Register = () => {
       </Card>
     </div>
   );
-};
-
-export default Register;
+}

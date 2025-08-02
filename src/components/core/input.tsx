@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 
 interface ReusableInputProps {
   id?: string;
+  name?: string;
   label?: string;
   placeholder?: string;
   type?: string;
@@ -16,10 +17,12 @@ interface ReusableInputProps {
   className?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  disabled?: boolean;
 }
 
 export default function InputBox({
   id,
+  name,
   label,
   placeholder,
   type = "text",
@@ -31,6 +34,7 @@ export default function InputBox({
   className,
   onFocus,
   onBlur,
+  disabled,
 }: ReusableInputProps) {
   return (
     <div className={cn("space-y-2", className)}>
@@ -48,6 +52,7 @@ export default function InputBox({
         )}
         <Input
           id={id}
+          name={name}
           type={type}
           placeholder={placeholder}
           className={cn(icon && "pl-10", error && "border-red-500")}
@@ -55,6 +60,7 @@ export default function InputBox({
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
+          disabled={disabled}
         />
       </div>
       {error && <p className="text-sm text-red-500">{error}</p>}

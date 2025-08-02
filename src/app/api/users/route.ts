@@ -11,20 +11,19 @@ const backendApi = axios.create({
   },
 });
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
-    const body = await request.json();
-    
-    const response = await backendApi.post("/auth/register", body);
+    // Backend'den tüm kullanıcıları çek
+    const response = await backendApi.get("/users");
 
     return NextResponse.json(response.data);
   } catch (error) {
-    console.error("Register proxy error:", error);
+    console.error("Users fetch error:", error);
     
     // Axios error handling
     if (axios.isAxiosError(error) && error.response) {
       return NextResponse.json(
-        { message: error.response.data?.message || "Registration failed" },
+        { message: error.response.data?.message || "Failed to fetch users" },
         { status: error.response.status }
       );
     }
