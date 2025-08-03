@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { authApi, userApi, type User, type AuthResponse } from "@/lib/api";
+import { authApi, userApi } from "@/lib/api";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 // Query Keys
 export const queryKeys = {
@@ -20,18 +21,35 @@ export const useUsers = () => {
 // Auth Hooks
 export const useRegister = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   return useMutation({
-    mutationFn: authApi.register,
-    onSuccess: (data: AuthResponse) => {
-      // Register sonrası otomatik login yapabilirsiniz
-      signIn("credentials", {
-        email: data.user.email,
-        password: "", // Bu durumda backend'den token ile direkt login yapmanız gerekebilir
+    mutationFn: async (credentials: { email: string; password: string; username: string }) => {
+      // Register işlemini yap
+      const registerResponse = await authApi.register(credentials);
+      
+      // Register başarılı ise, aynı bilgilerle otomatik login yap
+      const loginResult = await signIn("credentials", {
+        identifier: credentials.email, // email'i identifier olarak kullan
+        password: credentials.password,
         redirect: false,
       });
+
+      if (loginResult?.error) {
+        console.error("Auto-login after register failed:", loginResult.error);
+        // Login başarısız olsa bile register başarılı olmuş, sadece uyar
+        throw new Error("Kayıt başarılı ancak otomatik giriş yapılamadı. Lütfen manuel giriş yapın.");
+      }
+
+      return { registerResponse, loginResult };
+    },
+    onSuccess: async (data) => {
+      console.log("Register and auto-login success:", data);
       
       queryClient.invalidateQueries({ queryKey: queryKeys.users });
+      
+      // Başarılı register ve login sonrası ana sayfaya yönlendir
+      router.push("/");
     },
     onError: (error) => {
       console.error("Register error:", error);
@@ -41,12 +59,11 @@ export const useRegister = () => {
 
 export const useLogin = () => {
   return useMutation({
-    mutationFn: async (credentials: { email: string; password: string }) => {
-      console.log("Login attempt with:", credentials.email);
+    mutationFn: async (credentials: { identifier: string; password: string }) => {
       
       // NextAuth'ın signIn fonksiyonunu kullan
       const result = await signIn("credentials", {
-        email: credentials.email,
+        identifier: credentials.identifier,
         password: credentials.password,
         redirect: false,
       });
