@@ -7,7 +7,6 @@ import Card from "@/components/core/card";
 import InputBox from "@/components/core/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,9 +14,8 @@ import { useLogin } from "@/lib/hooks/api-hooks";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
-    email: "",
+    identifier: "",
     password: "",
-    rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
   const route = useRouter();
@@ -60,7 +58,7 @@ export default function LoginPage() {
 
     try {
       await loginMutation.mutateAsync({
-        email: formData.email,
+        identifier: formData.identifier,
         password: formData.password,
       });
       toast.success("Giriş başarılı!");
@@ -113,11 +111,11 @@ export default function LoginPage() {
                 Email
               </Label>
               <InputBox
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Enter your email address"
-                value={formData.email}
+                id="identifier"
+                name="identifier"
+                type="identifier"
+                placeholder="Enter your email address or username"
+                value={formData.identifier}
                 icon={<Mail size={18} />}
                 onChange={handleChange}
                 className="bg-gray-800/60 border-gray-700 text-white placeholder:text-gray-500"
@@ -151,21 +149,6 @@ export default function LoginPage() {
                 className="bg-gray-800/60 border-gray-700 text-white placeholder:text-gray-500"
                 disabled={loginMutation.isPending}
               />
-            </div>
-
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="rememberMe"
-                name="rememberMe"
-                checked={formData.rememberMe}
-                onCheckedChange={(checked) =>
-                  setFormData({ ...formData, rememberMe: checked as boolean })
-                }
-                disabled={loginMutation.isPending}
-              />
-              <Label htmlFor="rememberMe" className="text-sm text-gray-300">
-                Remember me
-              </Label>
             </div>
           </div>
         </form>

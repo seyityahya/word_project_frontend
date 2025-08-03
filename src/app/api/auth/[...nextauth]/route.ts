@@ -9,7 +9,7 @@ declare module "next-auth" {
     accessToken?: string;
     user: {
       id: string;
-      email: string;
+      identifier: string;
       name: string;
       // Diğer user özellikleri buraya eklenebilir
     };
@@ -17,7 +17,7 @@ declare module "next-auth" {
 
   interface User {
     id: string;
-    email: string;
+    identifier: string;
     name: string;
     accessToken: string;
   }
@@ -35,26 +35,25 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        identifier: { label: "identifier", type: "identifier" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (!credentials?.identifier || !credentials?.password) {
           console.log("Missing credentials");
           return null;
         }
 
         try {
-          console.log("Attempting login for:", credentials.email);
+          console.log("Attempting login for:", credentials.identifier);
           console.log("Backend URL:", BACKEND_URL);
 
           // Backend'e login isteği gönder - rememberMe field'ını da ekle
           const response = await axios.post(
             `${BACKEND_URL}/auth/login`,
             {
-              email: credentials.email,
+              identifier: credentials.identifier,
               password: credentials.password,
-              rememberMe: false, // Backend'in beklediği field
             },
             {
               timeout: 10000, // 10 saniye timeout
@@ -68,7 +67,7 @@ const handler = NextAuth({
           if (token && user) {
             const userObj = {
               id: user.id?.toString() || user._id?.toString(),
-              email: user.email,
+              identifier: user.identifier,
               name: user.name || user.email,
               accessToken: token,
             };
@@ -103,7 +102,7 @@ const handler = NextAuth({
         token.accessToken = user.accessToken;
         token.user = {
           id: user.id,
-          email: user.email,
+          identifier: user.identifier,
           name: user.name,
         };
       }

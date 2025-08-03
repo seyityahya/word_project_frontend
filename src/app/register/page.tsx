@@ -62,10 +62,12 @@ export default function RegisterPage() {
 
     try {
       await registerMutation.mutateAsync(formData);
-      toast.success("Kayıt başarılı! Giriş yapılıyor...");
-      route.push("/");
+      toast.success("Kayıt başarılı! Otomatik giriş yapıldı.");
+      // router.push("/") artık mutation içinde yapılıyor
     } catch (error: any) {
-      toast.error(error.response?.data?.message || "Kayıt başarısız!");
+      toast.error(
+        error.message || error.response?.data?.message || "Kayıt başarısız!"
+      );
     }
   };
 
