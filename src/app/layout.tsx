@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { TanstackProvider } from "@/components/providers/tanstack-provider";
 import { NextAuthProvider } from "@/components/providers/nextauth-provider";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +40,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NextAuthProvider>
-            <TanstackProvider>{children}</TanstackProvider>
+            <TanstackProvider>
+              <SidebarProvider>
+                <AppSidebar />
+                <main className="flex-1 w-full relative">
+                  <div className="absolute top-0 left-0 z-10">
+                    <SidebarTrigger />
+                  </div>
+                  {children}
+                </main>
+              </SidebarProvider>
+            </TanstackProvider>
           </NextAuthProvider>
           <Toaster
             richColors

@@ -17,7 +17,7 @@ export default function HomePage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-purple-950 to-gray-900">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-400 mx-auto mb-4"></div>
           <p className="text-gray-400">Yükleniyor...</p>
@@ -44,7 +44,7 @@ export default function HomePage() {
               <CardHeader>
                 <CardTitle className="text-white flex items-center">
                   <Home className="h-6 w-6 mr-2 text-blue-400" />
-                  Hoş Geldiniz, {user.username}!
+                  Hoş Geldiniz, {user.name}!
                 </CardTitle>
                 <CardDescription className="text-gray-400">
                   Hesabınıza başarıyla giriş yaptınız. Aşağıdaki özelliklerden
@@ -59,25 +59,17 @@ export default function HomePage() {
                     </h3>
                     <div className="space-y-2 text-sm">
                       <p className="text-gray-400">
-                        Email:{" "}
-                        <span className="text-blue-400">{user.email}</span>
+                        ID: <span className="text-blue-400">{user.id}</span>
                       </p>
                       <p className="text-gray-400">
-                        Level:{" "}
+                        Identifier:{" "}
                         <span className="text-green-400">
-                          {user.current_level}
+                          {user.identifier}
                         </span>
                       </p>
                       <p className="text-gray-400">
-                        XP: <span className="text-purple-400">{user.xp}</span>
-                      </p>
-                      <p className="text-gray-400">
-                        Coins:{" "}
-                        <span className="text-yellow-400">{user.coins}</span>
-                      </p>
-                      <p className="text-gray-400">
-                        Streak:{" "}
-                        <span className="text-orange-400">{user.streak}</span>
+                        Name:{" "}
+                        <span className="text-purple-400">{user.name}</span>
                       </p>
                     </div>
                   </div>
@@ -98,7 +90,7 @@ export default function HomePage() {
                           variant="outline"
                           className="w-full border-gray-600 text-gray-300 hover:bg-gray-800 justify-start"
                         >
-                          Playground'a Git
+                          Playground&apos;a Git
                         </Button>
                       </Link>
                     </div>
